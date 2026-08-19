@@ -1,0 +1,27 @@
+@model Category
+@{
+    ViewData["Title"] = "حذف تصنيف";
+}
+
+<h1 class="h3 mb-3 text-danger">هل أنت متأكد من الحذف؟</h1>
+
+@if (Model.Products.Any())
+{
+    <div class="alert alert-danger">
+        تحذير: حذف هذا التصنيف سيحذف معه <strong>@Model.Products.Count</strong> منتج (Cascade Delete).
+    </div>
+}
+
+<dl class="row">
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Name)</dt>
+    <dd class="col-sm-9">@Model.Name</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Description)</dt>
+    <dd class="col-sm-9">@Model.Description</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">نعم، احذف</button>
+    <a asp-action="Index" class="btn btn-secondary">إلغاء</a>
+</form>

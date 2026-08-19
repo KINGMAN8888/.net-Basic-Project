@@ -1,0 +1,23 @@
+@model Product
+@{
+    ViewData["Title"] = "حذف منتج";
+}
+
+<h1 class="h3 mb-3 text-danger">هل أنت متأكد من الحذف؟</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Name)</dt>
+    <dd class="col-sm-9">@Model.Name</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Price)</dt>
+    <dd class="col-sm-9">@Model.Price.ToString("N2")</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.CategoryId)</dt>
+    <dd class="col-sm-9">@Model.Category?.Name</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">نعم، احذف</button>
+    <a asp-action="Index" class="btn btn-secondary">إلغاء</a>
+</form>

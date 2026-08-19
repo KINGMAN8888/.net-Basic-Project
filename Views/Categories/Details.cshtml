@@ -1,0 +1,35 @@
+@model Category
+@{
+    ViewData["Title"] = "تفاصيل التصنيف";
+}
+
+<h1 class="h3 mb-3">@Model.Name</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Description)</dt>
+    <dd class="col-sm-9">@Model.Description</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.CreatedAt)</dt>
+    <dd class="col-sm-9">@Model.CreatedAt.ToString("yyyy-MM-dd")</dd>
+</dl>
+
+<h2 class="h5 mt-4">المنتجات داخل هذا التصنيف (@Model.Products.Count)</h2>
+
+@if (!Model.Products.Any())
+{
+    <div class="alert alert-warning">لا توجد منتجات في هذا التصنيف.</div>
+}
+else
+{
+    <ul class="list-group mb-3">
+        @foreach (var p in Model.Products)
+        {
+            <li class="list-group-item d-flex justify-content-between">
+                <span>@p.Name</span>
+                <span class="text-muted">@p.Price.ToString("N2")</span>
+            </li>
+        }
+    </ul>
+}
+
+<a asp-action="Index" class="btn btn-secondary">رجوع للقائمة</a>

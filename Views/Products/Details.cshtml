@@ -1,0 +1,26 @@
+@model Product
+@{
+    ViewData["Title"] = "تفاصيل المنتج";
+}
+
+<h1 class="h3 mb-3">تفاصيل المنتج</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Name)</dt>
+    <dd class="col-sm-9">@Model.Name</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Price)</dt>
+    <dd class="col-sm-9">@Model.Price.ToString("N2")</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Stock)</dt>
+    <dd class="col-sm-9">@Model.Stock</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.CategoryId)</dt>
+    <dd class="col-sm-9">@Model.Category?.Name</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.IsAvailable)</dt>
+    <dd class="col-sm-9">@(Model.IsAvailable ? "متاح" : "غير متاح")</dd>
+</dl>
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">تعديل</a>
+<a asp-action="Index" class="btn btn-secondary">رجوع للقائمة</a>
